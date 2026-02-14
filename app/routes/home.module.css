@@ -10,10 +10,11 @@
   left: 0;
   right: 0;
   z-index: 100;
-  background: rgba(253, 253, 252, 0.95);
+  background: var(--color-neutral-1);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--color-neutral-4);
+  border-bottom: 1px solid var(--color-neutral-5);
   transition: all 0.3s var(--ease);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .headerContainer {
@@ -32,8 +33,9 @@
 }
 
 .logoImage {
-  height: 56px;
+  height: 50px;
   width: auto;
+  object-fit: contain;
 }
 
 .nav {
@@ -357,15 +359,34 @@
   border-radius: var(--radius-5);
   padding: var(--space-6);
   box-shadow: var(--shadow-2);
-  transition: all 0.3s var(--ease);
+  transition: all 0.4s var(--ease-in-out);
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
+  border: 1px solid var(--color-neutral-4);
+  position: relative;
+  overflow: hidden;
+}
+
+.serviceCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--color-accent-2), transparent);
+  transition: left 0.6s var(--ease);
+}
+
+.serviceCard:hover::before {
+  left: 100%;
 }
 
 .serviceCard:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-3);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  border-color: var(--color-accent-6);
 }
 
 .serviceIconWrapper {
@@ -397,14 +418,19 @@
 .serviceLink {
   color: var(--color-accent-9);
   font-weight: 600;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  transition: gap 0.3s var(--ease);
+  transition: all 0.3s var(--ease);
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  z-index: 1;
 }
 
 .serviceLink:hover {
   gap: var(--space-3);
+  color: var(--color-accent-10);
 }
 
 /* Quote Section */
@@ -480,12 +506,15 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
-  transition: all 0.3s var(--ease);
+  transition: all 0.4s var(--ease-in-out);
+  position: relative;
 }
 
 .testimonialCard:hover {
-  border-color: var(--color-accent-6);
-  box-shadow: var(--shadow-2);
+  border-color: var(--color-accent-8);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  transform: translateY(-6px);
+  background: linear-gradient(135deg, var(--color-neutral-1), var(--color-accent-1));
 }
 
 .testimonialHeader {
@@ -728,7 +757,7 @@
 
 /* Footer */
 .footer {
-  background: var(--color-neutral-12);
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
   color: var(--color-neutral-1);
   padding: var(--space-8) var(--space-6) var(--space-5);
 }

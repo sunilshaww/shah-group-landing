@@ -200,9 +200,13 @@ export default function Home() {
                 From concept to completion, we deliver exceptional residential and commercial developments that set new
                 standards in quality and design.
               </p>
-              <div className={styles.serviceLink}>
+              <button 
+                className={styles.serviceLink}
+                onClick={() => scrollToSection("contact")}
+                aria-label="Learn more about Property Development"
+              >
                 Learn More <ArrowRight size={16} />
-              </div>
+              </button>
             </div>
             <div className={styles.serviceCard}>
               <div className={styles.serviceIconWrapper}>
@@ -213,9 +217,13 @@ export default function Home() {
                 Access curated investment opportunities with proven ROI potential, backed by thorough market analysis
                 and expert guidance.
               </p>
-              <div className={styles.serviceLink}>
+              <button 
+                className={styles.serviceLink}
+                onClick={() => scrollToSection("contact")}
+                aria-label="Learn more about Investment Opportunities"
+              >
                 Learn More <ArrowRight size={16} />
-              </div>
+              </button>
             </div>
             <div className={styles.serviceCard}>
               <div className={styles.serviceIconWrapper}>
@@ -226,9 +234,13 @@ export default function Home() {
                 Strategic asset management services designed to optimize your real estate portfolio and maximize
                 long-term value.
               </p>
-              <div className={styles.serviceLink}>
+              <button 
+                className={styles.serviceLink}
+                onClick={() => scrollToSection("contact")}
+                aria-label="Learn more about Portfolio Management"
+              >
                 Learn More <ArrowRight size={16} />
-              </div>
+              </button>
             </div>
             <div className={styles.serviceCard}>
               <div className={styles.serviceIconWrapper}>
@@ -239,9 +251,13 @@ export default function Home() {
                 Luxury homes and communities designed for modern living, combining comfort, style, and sustainable
                 practices.
               </p>
-              <div className={styles.serviceLink}>
+              <button 
+                className={styles.serviceLink}
+                onClick={() => scrollToSection("contact")}
+                aria-label="Learn more about Residential Projects"
+              >
                 Learn More <ArrowRight size={16} />
-              </div>
+              </button>
             </div>
             <div className={styles.serviceCard}>
               <div className={styles.serviceIconWrapper}>
@@ -252,9 +268,13 @@ export default function Home() {
                 Prime commercial properties strategically located to drive business success and deliver exceptional
                 returns.
               </p>
-              <div className={styles.serviceLink}>
+              <button 
+                className={styles.serviceLink}
+                onClick={() => scrollToSection("contact")}
+                aria-label="Learn more about Commercial Spaces"
+              >
                 Learn More <ArrowRight size={16} />
-              </div>
+              </button>
             </div>
             <div className={styles.serviceCard}>
               <div className={styles.serviceIconWrapper}>
@@ -264,9 +284,13 @@ export default function Home() {
               <p className={styles.serviceDescription}>
                 Collaborative investment models that align interests and create mutual value for all stakeholders.
               </p>
-              <div className={styles.serviceLink}>
+              <button 
+                className={styles.serviceLink}
+                onClick={() => scrollToSection("contact")}
+                aria-label="Learn more about Partnership Programs"
+              >
                 Learn More <ArrowRight size={16} />
-              </div>
+              </button>
             </div>
           </div>
         </div>
