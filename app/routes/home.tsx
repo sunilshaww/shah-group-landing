@@ -46,6 +46,7 @@ export default function Home() {
         <div className={styles.headerContainer}>
           <div className={styles.logo}>
             <img src="/shah-group-logo.png" alt="Shah Group" className={styles.logoImage} />
+            <div className={styles.brandName}>Shah Group</div>
           </div>
           <nav className={styles.nav}>
             <button className={styles.navLink} onClick={() => scrollToSection("about")}>
@@ -104,6 +105,32 @@ export default function Home() {
                 className={styles.heroImage}
               />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats/Impact Section */}
+      <section className={styles.stats}>
+        <div className={styles.statsContainer}>
+          <div className={styles.statCard}>
+            <div className={styles.statNumber}>25+</div>
+            <div className={styles.statLabel}>Years of Excellence</div>
+            <div className={styles.statDescription}>Proven track record in real estate development</div>
+          </div>
+          <div className={styles.statCard}>
+            <div className={styles.statNumber}>$500M+</div>
+            <div className={styles.statLabel}>Portfolio Value</div>
+            <div className={styles.statDescription}>Diversified assets under management</div>
+          </div>
+          <div className={styles.statCard}>
+            <div className={styles.statNumber}>150+</div>
+            <div className={styles.statLabel}>Projects Delivered</div>
+            <div className={styles.statDescription}>Quality developments across prime locations</div>
+          </div>
+          <div className={styles.statCard}>
+            <div className={styles.statNumber}>98%</div>
+            <div className={styles.statLabel}>Client Satisfaction</div>
+            <div className={styles.statDescription}>Trusted by investors and partners worldwide</div>
           </div>
         </div>
       </section>
