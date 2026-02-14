@@ -108,28 +108,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className={styles.stats}>
-        <div className={styles.statsContainer}>
-          <div className={styles.statItem}>
-            <div className={styles.statValue}>500+</div>
-            <div className={styles.statLabel}>Properties Developed</div>
-          </div>
-          <div className={styles.statItem}>
-            <div className={styles.statValue}>$2.5B+</div>
-            <div className={styles.statLabel}>Portfolio Value</div>
-          </div>
-          <div className={styles.statItem}>
-            <div className={styles.statValue}>1,200+</div>
-            <div className={styles.statLabel}>Satisfied Investors</div>
-          </div>
-          <div className={styles.statItem}>
-            <div className={styles.statValue}>25+</div>
-            <div className={styles.statLabel}>Years of Excellence</div>
-          </div>
-        </div>
-      </section>
-
       {/* About Section */}
       <section id="about" className={styles.about}>
         <div className={styles.aboutContainer}>
@@ -200,7 +178,7 @@ export default function Home() {
                 From concept to completion, we deliver exceptional residential and commercial developments that set new
                 standards in quality and design.
               </p>
-              <button 
+              <button
                 className={styles.serviceLink}
                 onClick={() => scrollToSection("contact")}
                 aria-label="Learn more about Property Development"
@@ -217,7 +195,7 @@ export default function Home() {
                 Access curated investment opportunities with proven ROI potential, backed by thorough market analysis
                 and expert guidance.
               </p>
-              <button 
+              <button
                 className={styles.serviceLink}
                 onClick={() => scrollToSection("contact")}
                 aria-label="Learn more about Investment Opportunities"
@@ -234,7 +212,7 @@ export default function Home() {
                 Strategic asset management services designed to optimize your real estate portfolio and maximize
                 long-term value.
               </p>
-              <button 
+              <button
                 className={styles.serviceLink}
                 onClick={() => scrollToSection("contact")}
                 aria-label="Learn more about Portfolio Management"
@@ -251,7 +229,7 @@ export default function Home() {
                 Luxury homes and communities designed for modern living, combining comfort, style, and sustainable
                 practices.
               </p>
-              <button 
+              <button
                 className={styles.serviceLink}
                 onClick={() => scrollToSection("contact")}
                 aria-label="Learn more about Residential Projects"
@@ -268,7 +246,7 @@ export default function Home() {
                 Prime commercial properties strategically located to drive business success and deliver exceptional
                 returns.
               </p>
-              <button 
+              <button
                 className={styles.serviceLink}
                 onClick={() => scrollToSection("contact")}
                 aria-label="Learn more about Commercial Spaces"
@@ -284,7 +262,7 @@ export default function Home() {
               <p className={styles.serviceDescription}>
                 Collaborative investment models that align interests and create mutual value for all stakeholders.
               </p>
-              <button 
+              <button
                 className={styles.serviceLink}
                 onClick={() => scrollToSection("contact")}
                 aria-label="Learn more about Partnership Programs"
@@ -417,7 +395,7 @@ export default function Home() {
                 </div>
                 <div className={styles.contactItemContent}>
                   <div className={styles.contactItemLabel}>Phone</div>
-                  <div className={styles.contactItemValue}>+1 (555) 123-4567</div>
+                  <div className={styles.contactItemValue}>+1 (555) 123-45b67</div>
                 </div>
               </div>
               <div className={styles.contactItem}>
