@@ -33,9 +33,17 @@
 }
 
 .logoImage {
-  height: 50px;
+  height: 70px;
   width: auto;
   object-fit: contain;
+  filter: brightness(1.1) contrast(1.1);
+}
+
+.brandName {
+  font-size: var(--font-size-3);
+  font-weight: 700;
+  color: var(--color-accent-9);
+  letter-spacing: -0.01em;
 }
 
 .nav {
@@ -799,8 +807,12 @@
 }
 
 .footerTitle {
-  font-weight: 600;
+  font-weight: 700;
+  font-size: var(--font-size-2);
   margin-bottom: var(--space-2);
+  color: var(--color-gold-9);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .footerLink {
@@ -890,6 +902,15 @@
 
   .statsContainer {
     grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+
+  .statValue {
+    font-size: var(--font-size-6);
+  }
+
+  .statLabel {
+    font-size: var(--font-size-1);
   }
 
   .ctaActions {

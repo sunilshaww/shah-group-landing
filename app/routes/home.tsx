@@ -46,6 +46,7 @@ export default function Home() {
         <div className={styles.headerContainer}>
           <div className={styles.logo}>
             <img src="/shah-group-logo.png" alt="Shah Group" className={styles.logoImage} />
+            <span className={styles.brandName}>Shah Group</span>
           </div>
           <nav className={styles.nav}>
             <button className={styles.navLink} onClick={() => scrollToSection("about")}>
@@ -104,6 +105,28 @@ export default function Home() {
                 className={styles.heroImage}
               />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className={styles.stats}>
+        <div className={styles.statsContainer}>
+          <div className={styles.statItem}>
+            <div className={styles.statValue}>25+</div>
+            <div className={styles.statLabel}>Years of Excellence</div>
+          </div>
+          <div className={styles.statItem}>
+            <div className={styles.statValue}>$500M+</div>
+            <div className={styles.statLabel}>Portfolio Value</div>
+          </div>
+          <div className={styles.statItem}>
+            <div className={styles.statValue}>150+</div>
+            <div className={styles.statLabel}>Projects Delivered</div>
+          </div>
+          <div className={styles.statItem}>
+            <div className={styles.statValue}>98%</div>
+            <div className={styles.statLabel}>Client Satisfaction</div>
           </div>
         </div>
       </section>
@@ -395,7 +418,7 @@ export default function Home() {
                 </div>
                 <div className={styles.contactItemContent}>
                   <div className={styles.contactItemLabel}>Phone</div>
-                  <div className={styles.contactItemValue}>+1 (555) 123-45b67</div>
+                  <div className={styles.contactItemValue}>+1 (555) 123-4567</div>
                 </div>
               </div>
               <div className={styles.contactItem}>
@@ -450,10 +473,6 @@ export default function Home() {
           <div className={styles.footerContent}>
             <div className={styles.footerBrand}>
               <img src="/shah-group-logo.png" alt="Shah Group" className={styles.footerLogo} />
-              <p>
-                Start writing your paragraph here. This is a good place to add details, explain your ideas, or provide
-                supporting information.
-              </p>
               <p className={styles.footerDescription}>
                 Building legacies through strategic real estate investment and development. Your trusted partner in
                 creating lasting value.
@@ -480,9 +499,7 @@ export default function Home() {
               <button className={styles.footerLink}>Partnerships</button>
             </div>
             <div className={styles.footerSection}>
-              <div>Container</div>
               <h4 className={styles.footerTitle}>Contact</h4>
-              <img src="data:image/png;base64,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" />
               <button className={styles.footerLink} onClick={() => scrollToSection("contact")}>
                 Get In Touch
               </button>
