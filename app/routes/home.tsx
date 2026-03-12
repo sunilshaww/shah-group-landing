@@ -19,6 +19,8 @@ import {
   Instagram,
   Linkedin,
 } from "lucide-react";
+import WhatsApp_Image_2026_0214_at_23_3010 from "/WhatsApp Image 2026-02-14 at 23.30.10.jpeg";
+import WhatsApp_Image_2026_0215_at_12_3833 from "/WhatsApp Image 2026-02-15 at 12.38.33.jpeg";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -45,7 +47,7 @@ export default function Home() {
       <header className={styles.header}>
         <div className={styles.headerContainer}>
           <div className={styles.logo}>
-            <img src="/shah-group-logo.png" alt="Shah Group" className={styles.logoImage} />
+            <img src={WhatsApp_Image_2026_0214_at_23_3010} alt="Shah Group" className={styles.logoImage} />
             <span className={styles.brandName}>Shah Group</span>
           </div>
           <nav className={styles.nav}>
@@ -109,37 +111,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className={styles.stats}>
-        <div className={styles.statsContainer}>
-          <div className={styles.statItem}>
-            <div className={styles.statValue}>25+</div>
-            <div className={styles.statLabel}>Years of Excellence</div>
-          </div>
-          <div className={styles.statItem}>
-            <div className={styles.statValue}>$500M+</div>
-            <div className={styles.statLabel}>Portfolio Value</div>
-          </div>
-          <div className={styles.statItem}>
-            <div className={styles.statValue}>150+</div>
-            <div className={styles.statLabel}>Projects Delivered</div>
-          </div>
-          <div className={styles.statItem}>
-            <div className={styles.statValue}>98%</div>
-            <div className={styles.statLabel}>Client Satisfaction</div>
-          </div>
-        </div>
-      </section>
-
       {/* About Section */}
       <section id="about" className={styles.about}>
         <div className={styles.aboutContainer}>
           <div className={styles.aboutImageContainer}>
-            <img
-              src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&q=80"
-              alt="Shah Group Vision"
-              className={styles.aboutImage}
-            />
+            <img src={WhatsApp_Image_2026_0215_at_12_3833} alt="Shah Group Vision" className={styles.aboutImage} />
           </div>
           <div className={styles.aboutContent}>
             <div className={styles.sectionLabel}>About Shah Group</div>
@@ -201,13 +177,15 @@ export default function Home() {
                 From concept to completion, we deliver exceptional residential and commercial developments that set new
                 standards in quality and design.
               </p>
-              <button
-                className={styles.serviceLink}
-                onClick={() => scrollToSection("contact")}
-                aria-label="Learn more about Property Development"
-              >
-                Learn More <ArrowRight size={16} />
-              </button>
+              <a href="mailto:shahgroup1999@gmail.com">
+                <button
+                  className={styles.serviceLink}
+                  onClick={() => scrollToSection("contact")}
+                  aria-label="Learn more about Property Development"
+                >
+                  Learn More <ArrowRight size={16} />
+                </button>
+              </a>
             </div>
             <div className={styles.serviceCard}>
               <div className={styles.serviceIconWrapper}>
@@ -218,13 +196,15 @@ export default function Home() {
                 Access curated investment opportunities with proven ROI potential, backed by thorough market analysis
                 and expert guidance.
               </p>
-              <button
-                className={styles.serviceLink}
-                onClick={() => scrollToSection("contact")}
-                aria-label="Learn more about Investment Opportunities"
-              >
-                Learn More <ArrowRight size={16} />
-              </button>
+              <a href="mailto:shahgroup1999@gmail.com">
+                <button
+                  className={styles.serviceLink}
+                  onClick={() => scrollToSection("contact")}
+                  aria-label="Learn more about Investment Opportunities"
+                >
+                  Learn More <ArrowRight size={16} />
+                </button>
+              </a>
             </div>
             <div className={styles.serviceCard}>
               <div className={styles.serviceIconWrapper}>
@@ -235,13 +215,15 @@ export default function Home() {
                 Strategic asset management services designed to optimize your real estate portfolio and maximize
                 long-term value.
               </p>
-              <button
-                className={styles.serviceLink}
-                onClick={() => scrollToSection("contact")}
-                aria-label="Learn more about Portfolio Management"
-              >
-                Learn More <ArrowRight size={16} />
-              </button>
+              <a href="mailto:shahgroup1999@gmail.com">
+                <button
+                  className={styles.serviceLink}
+                  onClick={() => scrollToSection("contact")}
+                  aria-label="Learn more about Portfolio Management"
+                >
+                  Learn More <ArrowRight size={16} />
+                </button>
+              </a>
             </div>
             <div className={styles.serviceCard}>
               <div className={styles.serviceIconWrapper}>
@@ -252,13 +234,15 @@ export default function Home() {
                 Luxury homes and communities designed for modern living, combining comfort, style, and sustainable
                 practices.
               </p>
-              <button
-                className={styles.serviceLink}
-                onClick={() => scrollToSection("contact")}
-                aria-label="Learn more about Residential Projects"
-              >
-                Learn More <ArrowRight size={16} />
-              </button>
+              <a href="mailto:shahgroup1999@gmail.com">
+                <button
+                  className={styles.serviceLink}
+                  onClick={() => scrollToSection("contact")}
+                  aria-label="Learn more about Residential Projects"
+                >
+                  Learn More <ArrowRight size={16} />
+                </button>
+              </a>
             </div>
             <div className={styles.serviceCard}>
               <div className={styles.serviceIconWrapper}>
@@ -285,13 +269,15 @@ export default function Home() {
               <p className={styles.serviceDescription}>
                 Collaborative investment models that align interests and create mutual value for all stakeholders.
               </p>
-              <button
-                className={styles.serviceLink}
-                onClick={() => scrollToSection("contact")}
-                aria-label="Learn more about Partnership Programs"
-              >
-                Learn More <ArrowRight size={16} />
-              </button>
+              <a href="mailto:shahgroup1999@gmail.com">
+                <button
+                  className={styles.serviceLink}
+                  onClick={() => scrollToSection("contact")}
+                  aria-label="Learn more about Partnership Programs"
+                >
+                  Learn More <ArrowRight size={16} />
+                </button>
+              </a>
             </div>
           </div>
         </div>
@@ -418,7 +404,7 @@ export default function Home() {
                 </div>
                 <div className={styles.contactItemContent}>
                   <div className={styles.contactItemLabel}>Phone</div>
-                  <div className={styles.contactItemValue}>+1 (555) 123-4567</div>
+                  <div className={styles.contactItemValue}>9831958387</div>
                 </div>
               </div>
               <div className={styles.contactItem}>
@@ -427,7 +413,9 @@ export default function Home() {
                 </div>
                 <div className={styles.contactItemContent}>
                   <div className={styles.contactItemLabel}>Email</div>
-                  <div className={styles.contactItemValue}>invest@shahgroup.com</div>
+                  <div className={styles.contactItemValue}>
+                    <a href="mailto:shahgroup1999@gmail.com">shahgroup1999@gmail.com</a>
+                  </div>
                 </div>
               </div>
               <div className={styles.contactItem}>
@@ -436,7 +424,9 @@ export default function Home() {
                 </div>
                 <div className={styles.contactItemContent}>
                   <div className={styles.contactItemLabel}>Office</div>
-                  <div className={styles.contactItemValue}>123 Business District, Metropolitan City</div>
+                  <div className={styles.contactItemValue}>
+                    169,Mahatma Gandhi road, KMC no.143 P.S - Haridevpur , kolkata -700063,Dist-South 24 Parganas    
+                  </div>
                 </div>
               </div>
             </div>
@@ -471,13 +461,6 @@ export default function Home() {
       <footer className={styles.footer}>
         <div className={styles.footerContainer}>
           <div className={styles.footerContent}>
-            <div className={styles.footerBrand}>
-              <img src="/shah-group-logo.png" alt="Shah Group" className={styles.footerLogo} />
-              <p className={styles.footerDescription}>
-                Building legacies through strategic real estate investment and development. Your trusted partner in
-                creating lasting value.
-              </p>
-            </div>
             <div className={styles.footerSection}>
               <h4 className={styles.footerTitle}>Company</h4>
               <button className={styles.footerLink} onClick={() => scrollToSection("about")}>
