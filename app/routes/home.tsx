@@ -461,6 +461,17 @@ export default function Home() {
       <footer className={styles.footer}>
         <div className={styles.footerContainer}>
           <div className={styles.footerContent}>
+            <div className={styles.footerBrand}>
+              <img
+                src={WhatsApp_Image_2026_0214_at_23_3010}
+                alt="Shah Group Logo"
+                className={styles.footerLogo}
+              />
+              <span className={styles.footerBrandName}>Shah Group</span>
+              <p className={styles.footerDescription}>
+                Your trusted partner in premium real estate development and investment. Building legacies since 1999.
+              </p>
+            </div>
             <div className={styles.footerSection}>
               <h4 className={styles.footerTitle}>Company</h4>
               <button className={styles.footerLink} onClick={() => scrollToSection("about")}>
