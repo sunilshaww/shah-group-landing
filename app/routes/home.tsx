@@ -252,9 +252,9 @@ export default function Home() {
               <div className={styles.serviceIconWrapper}>
                 <Users className={styles.serviceIcon} size={32} />
               </div>
+              Coming Soon
               <h3 className={styles.serviceTitle}>
-                Partnership Programs
-                <span className={styles.comingSoonBadge}>Coming Soon</span>
+                Partnership Programs<span className={styles.comingSoonBadge}></span>
               </h3>
               <p className={styles.serviceDescription}>
                 Collaborative investment models that align interests and create mutual value for all stakeholders.
@@ -492,7 +492,7 @@ export default function Home() {
               <img src={WhatsApp_Image_2026_0214_at_23_3010} alt="Shah Group Logo" className={styles.footerLogo} />
               <span className={styles.footerBrandName}>Shah Group</span>
               <p className={styles.footerDescription}>
-                Your trusted partner in premium real estate development and investment. Building legacies since 1999.
+                Your trusted partner in premium real estate development and investment. Building legacies since 2020.
               </p>
             </div>
             <div className={styles.footerSection}>
@@ -506,7 +506,7 @@ export default function Home() {
               <button className={styles.footerLink} onClick={() => scrollToSection("testimonials")}>
                 Testimonials
               </button>
-              <button className={styles.footerLink}>Portfolio</button>
+              <button className={styles.footerLink}></button>
             </div>
             <div className={styles.footerSection}>
               <h4 className={styles.footerTitle}>Contact</h4>
