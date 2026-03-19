@@ -506,19 +506,10 @@ export default function Home() {
               <button className={styles.footerLink}>Portfolio</button>
             </div>
             <div className={styles.footerSection}>
-              <h4 className={styles.footerTitle}>Services</h4>
-              <button className={styles.footerLink}>Property Development</button>
-              <button className={styles.footerLink}>Investment</button>
-              <button className={styles.footerLink}>Portfolio Management</button>
-              <button className={styles.footerLink}>Partnerships</button>
-            </div>
-            <div className={styles.footerSection}>
               <h4 className={styles.footerTitle}>Contact</h4>
               <button className={styles.footerLink} onClick={() => scrollToSection("contact")}>
                 Get In Touch
               </button>
-              <button className={styles.footerLink}>Careers</button>
-              <button className={styles.footerLink}>Press</button>
               <button className={styles.footerLink}>Support</button>
             </div>
           </div>
