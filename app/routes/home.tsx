@@ -151,9 +151,9 @@ export default function Home() {
             <div className={styles.sectionLabel}>About Shah Group</div>
             <h2 className={styles.sectionTitle}>Building Trust, Creating Value, Delivering Excellence</h2>
             <p className={styles.aboutText}>
-              For over two decades, Shah Group has been at the forefront of real estate innovation, combining deep
-              market expertise with unwavering commitment to quality. We don't just develop properties—we create
-              communities, build legacies, and forge partnerships that stand the test of time.
+              For over more than 5+ years. Shah Group has been at the forefront of real estate innovation, combining
+              deep market expertise with unwavering commitment to quality. We don&apos;t just develop properties—we
+              create communities, build legacies, and forge partnerships that stand the test of time.
             </p>
             <div className={styles.aboutFeatures}>
               <div className={styles.featureItem}>
@@ -161,7 +161,7 @@ export default function Home() {
                 <div className={styles.featureText}>
                   <div className={styles.featureTitle}>Proven Track Record</div>
                   <div className={styles.featureDescription}>
-                    25+ years of consistent growth and successful project delivery across diverse market conditions.
+                    5+ years of consistent growth and successful project delivery across diverse market conditions.
                   </div>
                 </div>
               </div>
@@ -510,7 +510,9 @@ export default function Home() {
               <button className={styles.footerLink} onClick={() => scrollToSection("contact")}>
                 Get In Touch
               </button>
-              <a href="mailto:shahgroup1999@gmail.com" className={styles.footerLink}>Support</a>
+              <a href="mailto:shahgroup1999@gmail.com" className={styles.footerLink}>
+                Support
+              </a>
             </div>
           </div>
           <div className={styles.footerBottom}>
