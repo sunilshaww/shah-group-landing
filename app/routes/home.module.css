@@ -913,19 +913,77 @@
   max-width: 340px;
 }
 
+/* Mobile Menu Toggle */
+.mobileMenuToggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-2);
+  border-radius: var(--radius-2);
+  z-index: 200;
+  position: relative;
+}
+
+.menuBar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--color-neutral-12);
+  border-radius: 2px;
+  transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+
+.menuBarOpen1 {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menuBarOpen2 {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.menuBarOpen3 {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.mobileOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: rgba(0, 0, 0, 0.3);
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
   .heroContent {
     grid-template-columns: 1fr;
     gap: var(--space-6);
+    padding: var(--space-8) var(--space-5);
   }
 
   .heroVisual {
     order: -1;
+    max-width: 560px;
+    margin: 0 auto;
+    width: 100%;
   }
 
   .aboutContainer {
     grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .aboutImageContainer {
+    aspect-ratio: 16/9;
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
   }
 
   .servicesGrid {
@@ -937,55 +995,251 @@
   }
 
   .testimonialsGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .contactContainer {
     grid-template-columns: 1fr;
+    gap: var(--space-6);
   }
 
   .footerContent {
     grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+  }
+
+  .quoteText {
+    font-size: var(--font-size-3);
   }
 }
 
 @media (max-width: 768px) {
+  /* Header */
+  .headerContainer {
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .mobileMenuToggle {
+    display: flex;
+  }
+
   .nav {
     display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-1);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 80%;
+    max-width: 320px;
+    background: var(--color-neutral-1);
+    padding: 80px var(--space-5) var(--space-5);
+    box-shadow: var(--shadow-4);
+    z-index: 100;
+    overflow-y: auto;
+    border-left: 1px solid var(--color-neutral-4);
+  }
+
+  .navOpen {
+    display: flex;
+  }
+
+  .navLink {
+    font-size: var(--font-size-2);
+    padding: var(--space-3) 0;
+    width: 100%;
+    border-bottom: 1px solid var(--color-neutral-3);
+  }
+
+  .ctaButton {
+    width: 100%;
+    margin-top: var(--space-3);
+    text-align: center;
+    justify-content: center;
+    padding: var(--space-4) var(--space-5);
+  }
+
+  .logoImage {
+    height: 50px;
+  }
+
+  .brandName {
+    font-size: var(--font-size-2);
+  }
+
+  /* Hero */
+  .hero {
+    padding-top: 80px;
+    min-height: auto;
+  }
+
+  .heroContent {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+    padding: var(--space-6) var(--space-4);
   }
 
   .heroTitle {
-    font-size: var(--font-size-6);
+    font-size: var(--font-size-5);
   }
 
-  .servicesGrid {
-    grid-template-columns: 1fr;
+  .heroSubtitle {
+    font-size: var(--font-size-1);
   }
 
-  .statsContainer {
+  .heroActions {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .primaryButton {
+    width: 100%;
+    justify-content: center;
+    font-size: var(--font-size-1);
+  }
+
+  .heroVisual {
+    order: -1;
+    max-width: 100%;
+  }
+
+  /* About */
+  .about {
+    padding: var(--space-7) var(--space-4);
+  }
+
+  .aboutContainer {
     grid-template-columns: 1fr;
     gap: var(--space-5);
   }
 
-  .statValue {
-    font-size: var(--font-size-6);
+  .aboutImageContainer {
+    aspect-ratio: 4/3;
   }
 
-  .statLabel {
-    font-size: var(--font-size-1);
+  /* Services */
+  .services {
+    padding: var(--space-7) var(--space-4);
+  }
+
+  .servicesGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  /* Stats */
+  .stats {
+    padding: var(--space-6) var(--space-4);
+  }
+
+  .statsContainer {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+  }
+
+  .statValue {
+    font-size: var(--font-size-5);
+  }
+
+  /* Quote */
+  .quote {
+    padding: var(--space-7) var(--space-4);
+  }
+
+  .quoteText {
+    font-size: var(--font-size-2);
+  }
+
+  /* Testimonials */
+  .testimonials {
+    padding: var(--space-7) var(--space-4);
+  }
+
+  .testimonialsGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  /* CTA */
+  .cta {
+    padding: var(--space-7) var(--space-4);
+  }
+
+  .ctaContainer {
+    padding: var(--space-6) var(--space-4);
+  }
+
+  .ctaTitle {
+    font-size: var(--font-size-4);
   }
 
   .ctaActions {
     flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .ctaPrimaryButton,
+  .ctaSecondaryButton {
+    width: 100%;
+    font-size: var(--font-size-1);
+  }
+
+  /* Contact */
+  .contact {
+    padding: var(--space-7) var(--space-4);
+  }
+
+  .contactContainer {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+
+  /* Footer */
+  .footer {
+    padding: var(--space-7) var(--space-4) var(--space-5);
   }
 
   .footerContent {
     grid-template-columns: 1fr;
+    gap: var(--space-5);
   }
 
   .footerBottom {
     flex-direction: column;
     gap: var(--space-4);
     text-align: center;
+  }
+
+  .footerDescription {
+    max-width: 100%;
+  }
+
+  /* Sections general */
+  .sectionTitle {
+    font-size: var(--font-size-4);
+  }
+}
+
+@media (max-width: 480px) {
+  .statsContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .heroTitle {
+    font-size: var(--font-size-4);
+  }
+
+  .testimonialCard {
+    padding: var(--space-4);
+  }
+
+  .serviceCard {
+    padding: var(--space-4);
+  }
+
+  .contactForm {
+    padding: var(--space-4);
   }
 }

@@ -44,6 +44,7 @@ interface ContactForm {
 }
 
 export default function Home() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [formData, setFormData] = useState<ContactForm>({
     name: "",
     email: "",
@@ -57,6 +58,7 @@ export default function Home() {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
+    setMobileMenuOpen(false);
   };
 
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -78,7 +80,16 @@ export default function Home() {
             <img src={WhatsApp_Image_2026_0214_at_23_3010} alt="Shah Group" className={styles.logoImage} />
             <span className={styles.brandName}>Shah Group</span>
           </div>
-          <nav className={styles.nav}>
+          <button
+            className={styles.mobileMenuToggle}
+            onClick={() => setMobileMenuOpen((o) => !o)}
+            aria-label="Toggle menu"
+          >
+            <span className={`${styles.menuBar} ${mobileMenuOpen ? styles.menuBarOpen1 : ""}`} />
+            <span className={`${styles.menuBar} ${mobileMenuOpen ? styles.menuBarOpen2 : ""}`} />
+            <span className={`${styles.menuBar} ${mobileMenuOpen ? styles.menuBarOpen3 : ""}`} />
+          </button>
+          <nav className={`${styles.nav} ${mobileMenuOpen ? styles.navOpen : ""}`}>
             <button className={styles.navLink} onClick={() => scrollToSection("about")}>
               About
             </button>
@@ -100,6 +111,7 @@ export default function Home() {
               Invest Now
             </button>
           </nav>
+          {mobileMenuOpen && <div className={styles.mobileOverlay} onClick={() => setMobileMenuOpen(false)} />}
         </div>
       </header>
 
