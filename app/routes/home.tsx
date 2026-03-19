@@ -65,12 +65,8 @@ export default function Home() {
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Enquiry from ${formData.name} - Shah Group Website`);
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\nMessage:\n${formData.message}`,
-    );
-    window.location.href = `mailto:shahgroup1999@gmail.com?subject=${subject}&body=${body}`;
     setSubmitted(true);
+    setFormData({ name: "", email: "", phone: "", message: "" });
   };
 
   return (
