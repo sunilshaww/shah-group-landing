@@ -1,5 +1,6 @@
 import type { Route } from "./+types/home";
 import styles from "./home.module.css";
+import { useState } from "react";
 import {
   Building2,
   TrendingUp,
@@ -18,6 +19,8 @@ import {
   Twitter,
   Instagram,
   Linkedin,
+  FileText,
+  CheckCircle,
 } from "lucide-react";
 import WhatsApp_Image_2026_0214_at_23_3010 from "/WhatsApp Image 2026-02-14 at 23.30.10.jpeg";
 import WhatsApp_Image_2026_0215_at_12_3833 from "/WhatsApp Image 2026-02-15 at 12.38.33.jpeg";
@@ -33,12 +36,41 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
+interface ContactForm {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+}
+
 export default function Home() {
+  const [formData, setFormData] = useState<ContactForm>({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+  const [submitted, setSubmitted] = useState(false);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
+  };
+
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const subject = encodeURIComponent(`Enquiry from ${formData.name} - Shah Group Website`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\nMessage:\n${formData.message}`
+    );
+    window.location.href = `mailto:shahgroup1999@gmail.com?subject=${subject}&body=${body}`;
+    setSubmitted(true);
   };
 
   return (
@@ -57,9 +89,24 @@ export default function Home() {
             <button className={styles.navLink} onClick={() => scrollToSection("services")}>
               Services
             </button>
-            <button className={styles.navLink} onClick={() => scrollToSection("testimonials")}>
-              Testimonials
-            </button>
+            <a
+              href="/joka-wander-valley.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.navLink}
+            >
+              <FileText size={15} style={{ verticalAlign: "middle", marginRight: 4 }} />
+              Joka Wander Valley
+            </a>
+            <a
+              href="/nest-valley.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.navLink}
+            >
+              <FileText size={15} style={{ verticalAlign: "middle", marginRight: 4 }} />
+              Nest Valley
+            </a>
             <button className={styles.navLink} onClick={() => scrollToSection("contact")}>
               Contact
             </button>
@@ -432,27 +479,70 @@ export default function Home() {
             </div>
           </div>
           <div className={styles.contactForm}>
-            <form>
-              <div className={styles.formGroup}>
-                <label className={styles.formLabel}>Full Name</label>
-                <input type="text" className={styles.formInput} placeholder="John Doe" />
+            {submitted ? (
+              <div className={styles.formSuccess}>
+                <CheckCircle size={48} className={styles.formSuccessIcon} />
+                <h3 className={styles.formSuccessTitle}>Message Sent!</h3>
+                <p className={styles.formSuccessText}>
+                  Your details have been sent to our team at shahgroup1999@gmail.com. We will get back to you shortly.
+                </p>
+                <button className={styles.formButton} onClick={() => setSubmitted(false)}>
+                  Send Another Message
+                </button>
               </div>
-              <div className={styles.formGroup}>
-                <label className={styles.formLabel}>Email Address</label>
-                <input type="email" className={styles.formInput} placeholder="john@example.com" />
-              </div>
-              <div className={styles.formGroup}>
-                <label className={styles.formLabel}>Phone Number</label>
-                <input type="tel" className={styles.formInput} placeholder="+1 (555) 000-0000" />
-              </div>
-              <div className={styles.formGroup}>
-                <label className={styles.formLabel}>Message</label>
-                <textarea className={styles.formTextarea} placeholder="Tell us about your investment interests..." />
-              </div>
-              <button type="submit" className={styles.formButton}>
-                Send Message
-              </button>
-            </form>
+            ) : (
+              <form onSubmit={handleFormSubmit}>
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel}>Full Name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    className={styles.formInput}
+                    placeholder="John Doe"
+                    value={formData.name}
+                    onChange={handleFormChange}
+                    required
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel}>Email Address</label>
+                  <input
+                    type="email"
+                    name="email"
+                    className={styles.formInput}
+                    placeholder="john@example.com"
+                    value={formData.email}
+                    onChange={handleFormChange}
+                    required
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel}>Phone Number</label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    className={styles.formInput}
+                    placeholder="+91 98765 43210"
+                    value={formData.phone}
+                    onChange={handleFormChange}
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel}>Message</label>
+                  <textarea
+                    name="message"
+                    className={styles.formTextarea}
+                    placeholder="Tell us about your investment interests..."
+                    value={formData.message}
+                    onChange={handleFormChange}
+                    required
+                  />
+                </div>
+                <button type="submit" className={styles.formButton}>
+                  Send Message
+                </button>
+              </form>
+            )}
           </div>
         </div>
       </section>
