@@ -252,7 +252,10 @@ export default function Home() {
               <div className={styles.serviceIconWrapper}>
                 <Users className={styles.serviceIcon} size={32} />
               </div>
-              <h3 className={styles.serviceTitle}>Partnership Programs</h3>
+              <h3 className={styles.serviceTitle}>
+                Partnership Programs
+                <span className={styles.comingSoonBadge}>Coming Soon</span>
+              </h3>
               <p className={styles.serviceDescription}>
                 Collaborative investment models that align interests and create mutual value for all stakeholders.
               </p>
