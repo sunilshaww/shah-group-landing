@@ -52,10 +52,15 @@ export async function action({ request }: Route.ActionArgs) {
   try {
     const nodemailer = await import("nodemailer");
     const transporter = nodemailer.default.createTransport({
-      service: "gmail",
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
+      },
+      tls: {
+        rejectUnauthorized: false,
       },
     });
 
@@ -94,9 +99,13 @@ export async function action({ request }: Route.ActionArgs) {
     });
 
     return { success: true };
-  } catch (err) {
-    console.error("Email send error:", err);
-    return { success: false, error: "Failed to send message. Please try again or contact us directly." };
+  } catch (err: unknown) {
+    const errorMessage = err instanceof Error ? err.message : String(err);
+    console.error("Email send error:", errorMessage);
+    return {
+      success: false,
+      error: `Failed to send message: ${errorMessage}. Please contact us directly at shahgroup1999@gmail.com or call 9831958387.`,
+    };
   }
 }
 
