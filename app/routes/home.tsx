@@ -437,7 +437,7 @@ export default function Home() {
                     type="text"
                     name="name"
                     className={styles.formInput}
-                    placeholder="John Doe"
+                    placeholder="Enter your name"
                     value={formData.name}
                     onChange={handleFormChange}
                     required
@@ -449,7 +449,7 @@ export default function Home() {
                     type="email"
                     name="email"
                     className={styles.formInput}
-                    placeholder="john@example.com"
+                    placeholder="Enter your email"
                     value={formData.email}
                     onChange={handleFormChange}
                     required
@@ -461,7 +461,7 @@ export default function Home() {
                     type="tel"
                     name="phone"
                     className={styles.formInput}
-                    placeholder="+91 98765 43210"
+                    placeholder="Enter your phone number"
                     value={formData.phone}
                     onChange={handleFormChange}
                     required
@@ -472,7 +472,7 @@ export default function Home() {
                   <textarea
                     name="message"
                     className={styles.formTextarea}
-                    placeholder="Tell us about your investment interests..."
+                    placeholder="Enter your message (optional)"
                     value={formData.message}
                     onChange={handleFormChange}
                   />
