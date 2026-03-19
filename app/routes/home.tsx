@@ -67,7 +67,7 @@ export default function Home() {
     e.preventDefault();
     const subject = encodeURIComponent(`Enquiry from ${formData.name} - Shah Group Website`);
     const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\nMessage:\n${formData.message}`
+      `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\nMessage:\n${formData.message}`,
     );
     window.location.href = `mailto:shahgroup1999@gmail.com?subject=${subject}&body=${body}`;
     setSubmitted(true);
@@ -89,21 +89,11 @@ export default function Home() {
             <button className={styles.navLink} onClick={() => scrollToSection("services")}>
               Services
             </button>
-            <a
-              href="/joka-wander-valley.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.navLink}
-            >
+            <a href="/joka-wander-valley.pdf" target="_blank" rel="noopener noreferrer" className={styles.navLink}>
               <FileText size={15} style={{ verticalAlign: "middle", marginRight: 4 }} />
               Joka Wander Valley
             </a>
-            <a
-              href="/nest-valley.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.navLink}
-            >
+            <a href="/nest-valley.pdf" target="_blank" rel="noopener noreferrer" className={styles.navLink}>
               <FileText size={15} style={{ verticalAlign: "middle", marginRight: 4 }} />
               Nest Valley
             </a>
@@ -224,15 +214,6 @@ export default function Home() {
                 From concept to completion, we deliver exceptional residential and commercial developments that set new
                 standards in quality and design.
               </p>
-              <a href="mailto:shahgroup1999@gmail.com">
-                <button
-                  className={styles.serviceLink}
-                  onClick={() => scrollToSection("contact")}
-                  aria-label="Learn more about Property Development"
-                >
-                  Learn More <ArrowRight size={16} />
-                </button>
-              </a>
             </div>
             <div className={styles.serviceCard}>
               <div className={styles.serviceIconWrapper}>
@@ -243,15 +224,6 @@ export default function Home() {
                 Access curated investment opportunities with proven ROI potential, backed by thorough market analysis
                 and expert guidance.
               </p>
-              <a href="mailto:shahgroup1999@gmail.com">
-                <button
-                  className={styles.serviceLink}
-                  onClick={() => scrollToSection("contact")}
-                  aria-label="Learn more about Investment Opportunities"
-                >
-                  Learn More <ArrowRight size={16} />
-                </button>
-              </a>
             </div>
             <div className={styles.serviceCard}>
               <div className={styles.serviceIconWrapper}>
@@ -262,15 +234,6 @@ export default function Home() {
                 Strategic asset management services designed to optimize your real estate portfolio and maximize
                 long-term value.
               </p>
-              <a href="mailto:shahgroup1999@gmail.com">
-                <button
-                  className={styles.serviceLink}
-                  onClick={() => scrollToSection("contact")}
-                  aria-label="Learn more about Portfolio Management"
-                >
-                  Learn More <ArrowRight size={16} />
-                </button>
-              </a>
             </div>
             <div className={styles.serviceCard}>
               <div className={styles.serviceIconWrapper}>
@@ -281,15 +244,6 @@ export default function Home() {
                 Luxury homes and communities designed for modern living, combining comfort, style, and sustainable
                 practices.
               </p>
-              <a href="mailto:shahgroup1999@gmail.com">
-                <button
-                  className={styles.serviceLink}
-                  onClick={() => scrollToSection("contact")}
-                  aria-label="Learn more about Residential Projects"
-                >
-                  Learn More <ArrowRight size={16} />
-                </button>
-              </a>
             </div>
             <div className={styles.serviceCard}>
               <div className={styles.serviceIconWrapper}>
@@ -300,13 +254,6 @@ export default function Home() {
                 Prime commercial properties strategically located to drive business success and deliver exceptional
                 returns.
               </p>
-              <button
-                className={styles.serviceLink}
-                onClick={() => scrollToSection("contact")}
-                aria-label="Learn more about Commercial Spaces"
-              >
-                Learn More <ArrowRight size={16} />
-              </button>
             </div>
             <div className={styles.serviceCard}>
               <div className={styles.serviceIconWrapper}>
@@ -316,15 +263,7 @@ export default function Home() {
               <p className={styles.serviceDescription}>
                 Collaborative investment models that align interests and create mutual value for all stakeholders.
               </p>
-              <a href="mailto:shahgroup1999@gmail.com">
-                <button
-                  className={styles.serviceLink}
-                  onClick={() => scrollToSection("contact")}
-                  aria-label="Learn more about Partnership Programs"
-                >
-                  Learn More <ArrowRight size={16} />
-                </button>
-              </a>
+              <a href="mailto:shahgroup1999@gmail.com"></a>
             </div>
           </div>
         </div>
@@ -539,7 +478,7 @@ export default function Home() {
                   />
                 </div>
                 <button type="submit" className={styles.formButton}>
-                  Send Message
+                  Send Details
                 </button>
               </form>
             )}
@@ -552,11 +491,7 @@ export default function Home() {
         <div className={styles.footerContainer}>
           <div className={styles.footerContent}>
             <div className={styles.footerBrand}>
-              <img
-                src={WhatsApp_Image_2026_0214_at_23_3010}
-                alt="Shah Group Logo"
-                className={styles.footerLogo}
-              />
+              <img src={WhatsApp_Image_2026_0214_at_23_3010} alt="Shah Group Logo" className={styles.footerLogo} />
               <span className={styles.footerBrandName}>Shah Group</span>
               <p className={styles.footerDescription}>
                 Your trusted partner in premium real estate development and investment. Building legacies since 1999.
