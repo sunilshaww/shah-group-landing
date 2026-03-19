@@ -510,7 +510,7 @@ export default function Home() {
               <button className={styles.footerLink} onClick={() => scrollToSection("contact")}>
                 Get In Touch
               </button>
-              <button className={styles.footerLink}>Support</button>
+              <a href="mailto:shahgroup1999@gmail.com" className={styles.footerLink}>Support</a>
             </div>
           </div>
           <div className={styles.footerBottom}>
