@@ -1,6 +1,7 @@
 import type { Route } from "./+types/home";
 import styles from "./home.module.css";
 import { useState } from "react";
+import { Form, useActionData, useNavigation } from "react-router";
 import {
   Building2,
   TrendingUp,
@@ -21,6 +22,7 @@ import {
   Linkedin,
   FileText,
   CheckCircle,
+  Loader2,
 } from "lucide-react";
 import WhatsApp_Image_2026_0214_at_23_3010 from "/WhatsApp Image 2026-02-14 at 23.30.10.jpeg";
 import WhatsApp_Image_2026_0215_at_12_3833 from "/WhatsApp Image 2026-02-15 at 12.38.33.jpeg";
@@ -36,22 +38,73 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-interface ContactForm {
-  name: string;
-  email: string;
-  phone: string;
-  message: string;
+export async function action({ request }: Route.ActionArgs) {
+  const formData = await request.formData();
+  const name = String(formData.get("name") ?? "").trim();
+  const email = String(formData.get("email") ?? "").trim();
+  const phone = String(formData.get("phone") ?? "").trim();
+  const message = String(formData.get("message") ?? "").trim();
+
+  if (!name || !email || !phone) {
+    return { success: false, error: "Please fill in all required fields." };
+  }
+
+  try {
+    const nodemailer = await import("nodemailer");
+    const transporter = nodemailer.default.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+
+    await transporter.sendMail({
+      from: `"Shah Group Website" <${process.env.EMAIL_USER}>`,
+      to: "shahgroup1999@gmail.com",
+      subject: `New Enquiry from ${name}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #e5e7eb; border-radius: 8px;">
+          <h2 style="color: #1a1a2e; margin-bottom: 24px;">New Investment Enquiry — Shah Group</h2>
+          <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+              <td style="padding: 10px 0; border-bottom: 1px solid #f3f4f6; font-weight: 600; color: #374151; width: 120px;">Name</td>
+              <td style="padding: 10px 0; border-bottom: 1px solid #f3f4f6; color: #111827;">${name}</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 0; border-bottom: 1px solid #f3f4f6; font-weight: 600; color: #374151;">Email</td>
+              <td style="padding: 10px 0; border-bottom: 1px solid #f3f4f6; color: #111827;"><a href="mailto:${email}">${email}</a></td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 0; border-bottom: 1px solid #f3f4f6; font-weight: 600; color: #374151;">Phone</td>
+              <td style="padding: 10px 0; border-bottom: 1px solid #f3f4f6; color: #111827;"><a href="tel:${phone}">${phone}</a></td>
+            </tr>
+            ${
+              message
+                ? `<tr>
+              <td style="padding: 10px 0; font-weight: 600; color: #374151; vertical-align: top;">Message</td>
+              <td style="padding: 10px 0; color: #111827;">${message.replace(/\n/g, "<br/>")}</td>
+            </tr>`
+                : ""
+            }
+          </table>
+          <p style="margin-top: 24px; font-size: 12px; color: #9ca3af;">This message was sent from the Shah Group website contact form.</p>
+        </div>
+      `,
+    });
+
+    return { success: true };
+  } catch (err) {
+    console.error("Email send error:", err);
+    return { success: false, error: "Failed to send message. Please try again or contact us directly." };
+  }
 }
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [formData, setFormData] = useState<ContactForm>({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
-  const [submitted, setSubmitted] = useState(false);
+  const actionData = useActionData<typeof action>();
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === "submitting";
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -59,16 +112,6 @@ export default function Home() {
       element.scrollIntoView({ behavior: "smooth" });
     }
     setMobileMenuOpen(false);
-  };
-
-  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setFormData({ name: "", email: "", phone: "", message: "" });
   };
 
   return (
@@ -264,14 +307,12 @@ export default function Home() {
               <div className={styles.serviceIconWrapper}>
                 <Users className={styles.serviceIcon} size={32} />
               </div>
-              Coming Soon
               <h3 className={styles.serviceTitle}>
-                Partnership Programs<span className={styles.comingSoonBadge}></span>
+                Partnership Programs<span className={styles.comingSoonBadge}>Coming Soon</span>
               </h3>
               <p className={styles.serviceDescription}>
                 Collaborative investment models that align interests and create mutual value for all stakeholders.
               </p>
-              <a href="mailto:shahgroup1999@gmail.com"></a>
             </div>
           </div>
         </div>
@@ -419,26 +460,26 @@ export default function Home() {
                 <div className={styles.contactItemContent}>
                   <div className={styles.contactItemLabel}>Office</div>
                   <div className={styles.contactItemValue}>
-                    169,Mahatma Gandhi road, KMC no.143 P.S - Haridevpur , kolkata -700063,Dist-South 24 Parganas    
+                    169, Mahatma Gandhi Road, KMC No.143 P.S - Haridevpur, Kolkata - 700063, Dist - South 24 Parganas
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div className={styles.contactForm}>
-            {submitted ? (
+            {actionData?.success ? (
               <div className={styles.formSuccess}>
                 <CheckCircle size={48} className={styles.formSuccessIcon} />
                 <h3 className={styles.formSuccessTitle}>Message Sent!</h3>
                 <p className={styles.formSuccessText}>
                   Your details have been sent to our team at shahgroup1999@gmail.com. We will get back to you shortly.
                 </p>
-                <button className={styles.formButton} onClick={() => setSubmitted(false)}>
-                  Send Another Message
-                </button>
               </div>
             ) : (
-              <form onSubmit={handleFormSubmit}>
+              <Form method="post">
+                {actionData?.error && (
+                  <div className={styles.formError}>{actionData.error}</div>
+                )}
                 <div className={styles.formGroup}>
                   <label className={styles.formLabel}>Full Name</label>
                   <input
@@ -446,8 +487,6 @@ export default function Home() {
                     name="name"
                     className={styles.formInput}
                     placeholder="Enter your name"
-                    value={formData.name}
-                    onChange={handleFormChange}
                     required
                   />
                 </div>
@@ -458,8 +497,6 @@ export default function Home() {
                     name="email"
                     className={styles.formInput}
                     placeholder="Enter your email"
-                    value={formData.email}
-                    onChange={handleFormChange}
                     required
                   />
                 </div>
@@ -470,8 +507,6 @@ export default function Home() {
                     name="phone"
                     className={styles.formInput}
                     placeholder="Enter your phone number"
-                    value={formData.phone}
-                    onChange={handleFormChange}
                     required
                   />
                 </div>
@@ -483,14 +518,19 @@ export default function Home() {
                     name="message"
                     className={styles.formTextarea}
                     placeholder="Enter your message (optional)"
-                    value={formData.message}
-                    onChange={handleFormChange}
                   />
                 </div>
-                <button type="submit" className={styles.formButton}>
-                  Send Details
+                <button type="submit" className={styles.formButton} disabled={isSubmitting}>
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 size={18} className={styles.spinnerIcon} />
+                      Sending...
+                    </>
+                  ) : (
+                    "Send Details"
+                  )}
                 </button>
-              </form>
+              </Form>
             )}
           </div>
         </div>
@@ -518,7 +558,6 @@ export default function Home() {
               <button className={styles.footerLink} onClick={() => scrollToSection("testimonials")}>
                 Testimonials
               </button>
-              <button className={styles.footerLink}></button>
             </div>
             <div className={styles.footerSection}>
               <h4 className={styles.footerTitle}>Contact</h4>
