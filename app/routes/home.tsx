@@ -131,9 +131,6 @@ export default function Home() {
                 Explore Opportunities
                 <ArrowRight size={20} />
               </button>
-              <button className={styles.secondaryButton} onClick={() => scrollToSection("about")}>
-                Learn More
-              </button>
             </div>
           </div>
           <div className={styles.heroVisual}>
@@ -468,7 +465,9 @@ export default function Home() {
                   />
                 </div>
                 <div className={styles.formGroup}>
-                  <label className={styles.formLabel}>Message <span style={{fontWeight: 400, fontSize: '0.85em', opacity: 0.7}}>(optional)</span></label>
+                  <label className={styles.formLabel}>
+                    Message <span style={{ fontWeight: 400, fontSize: "0.85em", opacity: 0.7 }}>(optional)</span>
+                  </label>
                   <textarea
                     name="message"
                     className={styles.formTextarea}
