@@ -464,17 +464,17 @@ export default function Home() {
                     placeholder="+91 98765 43210"
                     value={formData.phone}
                     onChange={handleFormChange}
+                    required
                   />
                 </div>
                 <div className={styles.formGroup}>
-                  <label className={styles.formLabel}>Message</label>
+                  <label className={styles.formLabel}>Message <span style={{fontWeight: 400, fontSize: '0.85em', opacity: 0.7}}>(optional)</span></label>
                   <textarea
                     name="message"
                     className={styles.formTextarea}
                     placeholder="Tell us about your investment interests..."
                     value={formData.message}
                     onChange={handleFormChange}
-                    required
                   />
                 </div>
                 <button type="submit" className={styles.formButton}>
