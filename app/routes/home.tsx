@@ -23,6 +23,7 @@ import {
   FileText,
   CheckCircle,
   Loader2,
+  MessageCircle, // Added for WhatsApp icon
 } from "lucide-react";
 import WhatsApp_Image_2026_0214_at_23_3010 from "/WhatsApp Image 2026-02-14 at 23.30.10.jpeg";
 import WhatsApp_Image_2026_0215_at_12_3833 from "/WhatsApp Image 2026-02-15 at 12.38.33.jpeg";
@@ -49,6 +50,16 @@ export async function action({ request }: Route.ActionArgs) {
     return { success: false, error: "Please fill in all required fields." };
   }
 
+  const EMAIL_USER = process.env.EMAIL_USER;
+  const EMAIL_PASS = process.env.EMAIL_PASS;
+
+  if (!EMAIL_USER || !EMAIL_PASS) {
+    return {
+      success: false,
+      error: "Mail service configuration is missing in the environment variables.",
+    };
+  }
+
   try {
     const nodemailer = await import("nodemailer");
     const transporter = nodemailer.default.createTransport({
@@ -56,18 +67,19 @@ export async function action({ request }: Route.ActionArgs) {
       port: 465,
       secure: true,
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-      tls: {
-        rejectUnauthorized: false,
+        user: EMAIL_USER,
+        pass: EMAIL_PASS,
       },
     });
 
+    await transporter.verify();
+
     await transporter.sendMail({
-      from: `"Shah Group Website" <${process.env.EMAIL_USER}>`,
+      from: `"Shah Group Website" <${EMAIL_USER}>`,
       to: "shahgroup1999@gmail.com",
+      replyTo: email,
       subject: `New Enquiry from ${name}`,
+      text: `New enquiry from ${name}\nEmail: ${email}\nPhone: ${phone}\n${message ? `Message: ${message}` : ""}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #e5e7eb; border-radius: 8px;">
           <h2 style="color: #1a1a2e; margin-bottom: 24px;">New Investment Enquiry — Shah Group</h2>
@@ -84,14 +96,11 @@ export async function action({ request }: Route.ActionArgs) {
               <td style="padding: 10px 0; border-bottom: 1px solid #f3f4f6; font-weight: 600; color: #374151;">Phone</td>
               <td style="padding: 10px 0; border-bottom: 1px solid #f3f4f6; color: #111827;"><a href="tel:${phone}">${phone}</a></td>
             </tr>
-            ${
-              message
-                ? `<tr>
+            ${message ? `
+            <tr>
               <td style="padding: 10px 0; font-weight: 600; color: #374151; vertical-align: top;">Message</td>
               <td style="padding: 10px 0; color: #111827;">${message.replace(/\n/g, "<br/>")}</td>
-            </tr>`
-                : ""
-            }
+            </tr>` : ""}
           </table>
           <p style="margin-top: 24px; font-size: 12px; color: #9ca3af;">This message was sent from the Shah Group website contact form.</p>
         </div>
@@ -101,10 +110,9 @@ export async function action({ request }: Route.ActionArgs) {
     return { success: true };
   } catch (err: unknown) {
     const errorMessage = err instanceof Error ? err.message : String(err);
-    console.error("Email send error:", errorMessage);
     return {
       success: false,
-      error: `Failed to send message: ${errorMessage}. Please contact us directly at shahgroup1999@gmail.com or call 9831958387.`,
+      error: `Connection failed: ${errorMessage}. Please check your App Password.`,
     };
   }
 }
@@ -121,6 +129,13 @@ export default function Home() {
       element.scrollIntoView({ behavior: "smooth" });
     }
     setMobileMenuOpen(false);
+  };
+
+  // WhatsApp Logic
+  const handleWhatsAppClick = () => {
+    const phoneNumber = "919831958387";
+    const message = encodeURIComponent("Hello Shah Group, I want to know more about the land and investment opportunities.");
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
   };
 
   return (
@@ -161,6 +176,10 @@ export default function Home() {
             </button>
             <button className={styles.ctaButton} onClick={() => scrollToSection("contact")}>
               Invest Now
+            </button>
+            <button className={styles.whatsappNavButton} onClick={handleWhatsAppClick} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <MessageCircle size={18} />
+              WhatsApp
             </button>
           </nav>
           {mobileMenuOpen && <div className={styles.mobileOverlay} onClick={() => setMobileMenuOpen(false)} />}
@@ -481,7 +500,7 @@ export default function Home() {
                 <CheckCircle size={48} className={styles.formSuccessIcon} />
                 <h3 className={styles.formSuccessTitle}>Message Sent!</h3>
                 <p className={styles.formSuccessText}>
-                  Your details have been sent to our team at shahgroup1999@gmail.com. We will get back to you shortly.
+                  Your details have been sent to our team. We will get back to you shortly.
                 </p>
               </div>
             ) : (
@@ -520,9 +539,7 @@ export default function Home() {
                   />
                 </div>
                 <div className={styles.formGroup}>
-                  <label className={styles.formLabel}>
-                    Message <span style={{ fontWeight: 400, fontSize: "0.85em", opacity: 0.7 }}>(optional)</span>
-                  </label>
+                  <label className={styles.formLabel}>Message</label>
                   <textarea
                     name="message"
                     className={styles.formTextarea}
@@ -558,41 +575,24 @@ export default function Home() {
             </div>
             <div className={styles.footerSection}>
               <h4 className={styles.footerTitle}>Company</h4>
-              <button className={styles.footerLink} onClick={() => scrollToSection("about")}>
-                About Us
-              </button>
-              <button className={styles.footerLink} onClick={() => scrollToSection("services")}>
-                Services
-              </button>
-              <button className={styles.footerLink} onClick={() => scrollToSection("testimonials")}>
-                Testimonials
-              </button>
+              <button className={styles.footerLink} onClick={() => scrollToSection("about")}>About Us</button>
+              <button className={styles.footerLink} onClick={() => scrollToSection("services")}>Services</button>
+              <button className={styles.footerLink} onClick={() => scrollToSection("testimonials")}>Testimonials</button>
             </div>
             <div className={styles.footerSection}>
               <h4 className={styles.footerTitle}>Contact</h4>
-              <button className={styles.footerLink} onClick={() => scrollToSection("contact")}>
-                Get In Touch
-              </button>
-              <a href="mailto:shahgroup1999@gmail.com" className={styles.footerLink}>
-                Support
-              </a>
+              <button className={styles.footerLink} onClick={() => scrollToSection("contact")}>Get In Touch</button>
+              <button className={styles.footerLink} onClick={handleWhatsAppClick}>WhatsApp Support</button>
             </div>
           </div>
           <div className={styles.footerBottom}>
             <div>© 2024 Shah Group Real Estate Company. All rights reserved.</div>
             <div className={styles.footerSocial}>
-              <a href="#" className={styles.socialLink}>
-                <Facebook size={20} />
-              </a>
-              <a href="#" className={styles.socialLink}>
-                <Twitter size={20} />
-              </a>
-              <a href="#" className={styles.socialLink}>
-                <Instagram size={20} />
-              </a>
-              <a href="#" className={styles.socialLink}>
-                <Linkedin size={20} />
-              </a>
+              
+              <a href="#" className={styles.socialLink}><Facebook size={20} /></a>
+              <a href="#" className={styles.socialLink}><Twitter size={20} /></a>
+              <a href="#" className={styles.socialLink}><Instagram size={20} /></a>
+              <a href="#" className={styles.socialLink}><Linkedin size={20} /></a>
             </div>
           </div>
         </div>

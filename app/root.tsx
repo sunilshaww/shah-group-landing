@@ -1,8 +1,9 @@
+
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 
 import type { Route } from "./+types/root";
 import { Toaster } from "./components/ui/toaster/toaster";
-import colorSchemeApi from "@dazl/color-scheme/client?url";
+// import colorSchemeApi from "@dazl/color-scheme/client?url";
 
 import "./styles/reset.css";
 import "./styles/global.css";
@@ -14,7 +15,7 @@ import "./styles/tokens/spacings.css";
 import "./styles/tokens/typography.css";
 import "./styles/theme.css";
 import "./styles/error-boundary.css";
-import { useColorScheme } from "@dazl/color-scheme/react";
+// import { useColorScheme } from "@dazl/color-scheme/react";
 import favicon from "/favicon.svg";
 
 export const links: Route.LinksFunction = () => [
@@ -36,14 +37,16 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const { rootCssClass, resolvedScheme } = useColorScheme();
+  // const { rootCssClass, resolvedScheme } = useColorScheme();
+  const rootCssClass = "";
+  const resolvedScheme = "light";
   return (
     <html lang="en" suppressHydrationWarning className={rootCssClass} style={{ colorScheme: resolvedScheme }}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
-        <script src={colorSchemeApi}></script>
+        {/* <script src={colorSchemeApi}></script> */}
         <Links />
       </head>
       <body>
