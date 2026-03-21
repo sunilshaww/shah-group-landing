@@ -1,6 +1,6 @@
 import type { Route } from "./+types/home";
 import styles from "./home.module.css";
-import { useState } from "react";
+import { useState,useEffect} from "react";
 import { Form, useActionData, useNavigation } from "react-router";
 import {
   Building2,
@@ -23,7 +23,8 @@ import {
   FileText,
   CheckCircle,
   Loader2,
-  MessageCircle, // Added for WhatsApp icon
+  MessageCircle,
+  Youtube, // Added for WhatsApp icon
 } from "lucide-react";
 import WhatsApp_Image_2026_0214_at_23_3010 from "/WhatsApp Image 2026-02-14 at 23.30.10.jpeg";
 import WhatsApp_Image_2026_0215_at_12_3833 from "/WhatsApp Image 2026-02-15 at 12.38.33.jpeg";
@@ -45,6 +46,8 @@ export async function action({ request }: Route.ActionArgs) {
   const email = String(formData.get("email") ?? "").trim();
   const phone = String(formData.get("phone") ?? "").trim();
   const message = String(formData.get("message") ?? "").trim();
+
+  
 
   if (!name || !email || !phone) {
     return { success: false, error: "Please fill in all required fields." };
@@ -119,9 +122,23 @@ export async function action({ request }: Route.ActionArgs) {
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  //dark mode
+  const [darkMode, setDarkMode] = useState(false);
   const actionData = useActionData<typeof action>();
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
+
+  /// Load theme from localStorage or system
+useEffect(() => {
+  const savedTheme = localStorage.getItem("theme");
+
+  if (savedTheme) {
+    setDarkMode(savedTheme === "dark");
+  } else {
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    setDarkMode(prefersDark);
+  }
+}, []);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -131,6 +148,13 @@ export default function Home() {
     setMobileMenuOpen(false);
   };
 
+  // Toggle function
+const toggleTheme = () => {
+  const newTheme = !darkMode;
+  setDarkMode(newTheme);
+  localStorage.setItem("theme", newTheme ? "dark" : "light");
+};
+
   // WhatsApp Logic
   const handleWhatsAppClick = () => {
     const phoneNumber = "919831958387";
@@ -139,7 +163,7 @@ export default function Home() {
   };
 
   return (
-    <div className={styles.page}>
+     <div className={`${styles.page} ${darkMode ? styles.dark : ""}`}>
       {/* Header */}
       <header className={styles.header}>
         <div className={styles.headerContainer}>
@@ -177,12 +201,13 @@ export default function Home() {
             <button className={styles.ctaButton} onClick={() => scrollToSection("contact")}>
               Invest Now
             </button>
-            <button className={styles.whatsappNavButton} onClick={handleWhatsAppClick} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <MessageCircle size={18} />
-              WhatsApp
-            </button>
+            
           </nav>
           {mobileMenuOpen && <div className={styles.mobileOverlay} onClick={() => setMobileMenuOpen(false)} />}
+            {/* Theme Toggle */}
+         <button className={styles.themeToggle} onClick={toggleTheme}>
+  {darkMode ? "☀️" : "🌙"}
+</button>
         </div>
       </header>
 
@@ -561,6 +586,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      
 
       {/* Footer */}
       <footer className={styles.footer}>
@@ -589,14 +615,29 @@ export default function Home() {
             <div>© 2024 Shah Group Real Estate Company. All rights reserved.</div>
             <div className={styles.footerSocial}>
               
-              <a href="#" className={styles.socialLink}><Facebook size={20} /></a>
-              <a href="#" className={styles.socialLink}><Twitter size={20} /></a>
-              <a href="#" className={styles.socialLink}><Instagram size={20} /></a>
-              <a href="#" className={styles.socialLink}><Linkedin size={20} /></a>
+              <a href="https://www.facebook.com/share/1CHWzfLNi2/" className={styles.socialLink}><Facebook size={20} /></a>
+              <a href="https://youtube.com/@shahgroupproperty?si=JOTLnXay3d04Rynt" className={styles.socialLink}><Youtube size={20} /></a>
+              <a href="https://www.instagram.com/shahgroupproperty?igsh=MTBrMXdpdmxxYmNreg==" className={styles.socialLink}><Instagram size={20} /></a>
+          
             </div>
           </div>
         </div>
       </footer>
+      {/* Floating Buttons */}
+<div className={styles.floatingButtons}>
+  
+  {/* Call Button */}
+  <a href="tel:919831958387" className={styles.callButton}>
+    <Phone size={24} />
+  </a>
+
+  {/* WhatsApp Button */}
+  <button onClick={handleWhatsAppClick} className={styles.whatsappButton}>
+    <MessageCircle size={26} />
+  </button>
+
+</div>
+      
     </div>
   );
 }

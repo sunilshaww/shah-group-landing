@@ -1,6 +1,191 @@
+/* =========================
+   GLOBAL TRANSITION
+========================= */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* =========================
+   LIGHT MODE (DEFAULT)
+========================= */
 .page {
-  min-height: 100vh;
-  background: var(--color-neutral-1);
+  background-color: #ffffff;
+  color: #111827;
+}
+
+/* =========================
+   DARK MODE BASE
+========================= */
+.dark {
+  background-color: #0f172a;
+  color: #ffffff;
+}
+
+/* =========================
+   TEXT FIXES (IMPORTANT)
+========================= */
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+  color: #ffffff;
+}
+
+.dark p {
+  color: #d1d5db;
+}
+
+.dark span {
+  color: #e5e7eb;
+}
+
+.dark label {
+  color: #e5e7eb;
+}
+
+.dark a {
+  color: #93c5fd;
+}
+
+.dark button {
+  color: #ffffff;
+}
+
+/* =========================
+   HEADER
+========================= */
+.dark .header {
+  background-color: #111827;
+  border-bottom: 1px solid #1f2937;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+.dark .hero,
+.dark .about,
+.dark .services,
+.dark .testimonials,
+.dark .contact,
+.dark .cta {
+  background-color: #0f172a;
+  color: white;
+}
+
+/* =========================
+   CARDS
+========================= */
+.dark .serviceCard,
+.dark .testimonialCard,
+.dark .contactForm {
+  background-color: #1f2937;
+  color: white;
+  border: 1px solid #374151;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.dark .primaryButton,
+.dark .ctaPrimaryButton,
+.dark .formButton {
+  background-color: #2563eb;
+  color: white;
+}
+
+.dark .ctaSecondaryButton {
+  background-color: transparent;
+  border: 1px solid #93c5fd;
+  color: #93c5fd;
+}
+
+/* =========================
+   INPUTS / FORMS
+========================= */
+.dark .formInput,
+.dark .formTextarea {
+  background-color: #111827;
+  color: #ffffff;
+  border: 1px solid #374151;
+}
+
+.dark .formInput::placeholder,
+.dark .formTextarea::placeholder {
+  color: #9ca3af;
+}
+
+/* =========================
+   FOOTER
+========================= */
+.dark .footer {
+  background-color: #020617;
+  color: #9ca3af;
+}
+
+/* =========================
+   ICONS
+========================= */
+.dark svg {
+  color: #e5e7eb;
+}
+
+/* =========================
+   FIX HARD-CODED TEXT (VERY IMPORTANT)
+========================= */
+.dark .sectionTitle,
+.dark .featureTitle,
+.dark .testimonialName,
+.dark .contactItemLabel {
+  color: #ffffff !important;
+}
+
+.dark .featureDescription,
+.dark .testimonialText,
+.dark .contactItemValue {
+  color: #d1d5db !important;
+}
+
+/* =========================
+   EXTRA SAFETY (FOR ANY MISSED TEXT)
+========================= */
+.dark * {
+  border-color: #374151;
+}
+.floatingButtons {
+  position: fixed !important;   /* force fixed */
+  bottom: 20px;
+  right: 20px;                  /* RIGHT SIDE */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 9999;                /* bring to top */
+}
+
+/* Buttons */
+.floatingButtons a,
+.floatingButtons button {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* WhatsApp */
+.whatsappButton {
+  background-color: #25D366;
+}
+
+/* Call */
+.callButton {
+  background-color: #007bff;
 }
 
 /* Header */
@@ -953,6 +1138,29 @@
   z-index: 90;
   background: rgba(0, 0, 0, 0.3);
 }
+/* =========================
+   🔥 FORCE DARK MODE COLORS (FIX ALL)
+========================= */
+
+.dark {
+  --color-neutral-1: #0f172a;
+  --color-neutral-2: #111827;
+  --color-neutral-3: #1f2937;
+  --color-neutral-4: #374151;
+  --color-neutral-5: #4b5563;
+
+  --color-neutral-10: #9ca3af;
+  --color-neutral-11: #d1d5db;
+  --color-neutral-12: #ffffff;
+
+  --color-accent-1: #020617;
+  --color-accent-2: #1e293b;
+  --color-accent-3: #334155;
+  --color-accent-9: #3b82f6;
+  --color-accent-10: #2563eb;
+
+  --color-accent-contrast: #ffffff;
+}
 
 /* --- Responsive Breakpoints --- */
 @media (max-width: 1024px) {
@@ -1125,6 +1333,7 @@
     gap: var(--space-4);
     text-align: center;
   }
+  
 }
 
 @media (max-width: 480px) {
@@ -1135,4 +1344,5 @@
   .heroTitle {
     font-size: var(--font-size-4);
   }
+  
 }
