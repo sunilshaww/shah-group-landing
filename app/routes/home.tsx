@@ -78,7 +78,7 @@ export async function action({ request }: Route.ActionArgs) {
     await transporter.verify();
 
     await transporter.sendMail({
-      from: `"Shah Group Website" <${EMAIL_USER}>`,
+      from: `"Shah Group Property Website" <${EMAIL_USER}>`,
       to: "shahgroup1999@gmail.com",
       replyTo: email,
       subject: `New Enquiry from ${name}`,
@@ -169,7 +169,7 @@ const toggleTheme = () => {
         <div className={styles.headerContainer}>
           <div className={styles.logo}>
             <img src={WhatsApp_Image_2026_0214_at_23_3010} alt="Shah Group" className={styles.logoImage} />
-            <span className={styles.brandName}>Shah Group</span>
+            <span className={styles.brandName}>Shah Group Property</span>
           </div>
           <button
             className={styles.mobileMenuToggle}
@@ -594,7 +594,7 @@ const toggleTheme = () => {
           <div className={styles.footerContent}>
             <div className={styles.footerBrand}>
               <img src={WhatsApp_Image_2026_0214_at_23_3010} alt="Shah Group Logo" className={styles.footerLogo} />
-              <span className={styles.footerBrandName}>Shah Group</span>
+              <span className={styles.footerBrandName}>Shah Group Property</span>
               <p className={styles.footerDescription}>
                 Your trusted partner in premium real estate development and investment. Building legacies since 2020.
               </p>
@@ -612,7 +612,7 @@ const toggleTheme = () => {
             </div>
           </div>
           <div className={styles.footerBottom}>
-            <div>© 2024 Shah Group Real Estate Company. All rights reserved.</div>
+            <div>© 2020 Shah Group Real Estate Company. All rights reserved.</div>
             <div className={styles.footerSocial}>
               
               <a href="https://www.facebook.com/share/1CHWzfLNi2/" className={styles.socialLink}><Facebook size={20} /></a>

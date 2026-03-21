@@ -1,6 +1,9 @@
 /* =========================
    GLOBAL TRANSITION
 ========================= */
+html, body {
+  overflow-x: hidden;
+}
 * {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -11,6 +14,13 @@
 .page {
   background-color: #ffffff;
   color: #111827;
+}
+.testimonialCard {
+  width: 100%;
+  max-width: 100%;
+}
+.testimonialsContainer {
+  padding: 0 16px;
 }
 
 /* =========================
@@ -23,35 +33,7 @@
 
 /* =========================
    TEXT FIXES (IMPORTANT)
-========================= */
-.dark h1,
-.dark h2,
-.dark h3,
-.dark h4,
-.dark h5,
-.dark h6 {
-  color: #ffffff;
-}
 
-.dark p {
-  color: #d1d5db;
-}
-
-.dark span {
-  color: #e5e7eb;
-}
-
-.dark label {
-  color: #e5e7eb;
-}
-
-.dark a {
-  color: #93c5fd;
-}
-
-.dark button {
-  color: #ffffff;
-}
 
 /* =========================
    HEADER
@@ -77,13 +59,7 @@
 /* =========================
    CARDS
 ========================= */
-.dark .serviceCard,
-.dark .testimonialCard,
-.dark .contactForm {
-  background-color: #1f2937;
-  color: white;
-  border: 1px solid #374151;
-}
+
 
 /* =========================
    BUTTONS
@@ -155,8 +131,8 @@
 }
 .floatingButtons {
   position: fixed !important;   /* force fixed */
-  bottom: 20px;
-  right: 20px;                  /* RIGHT SIDE */
+  bottom: 80px; /* move up */
+  right: 16px;                 /* RIGHT SIDE */
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -1096,20 +1072,33 @@
 /* Mobile Menu Toggle */
 .mobileMenuToggle {
   display: none;
+
+  /* Flex */
   flex-direction: column;
   justify-content: center;
-  gap: 5px;
-  width: 40px;
-  height: 40px;
-  background: none;
+  align-items: center;
+  gap: 4px;
+
+  /* Responsive sizing */
+  width: clamp(36px, 8vw, 48px);
+  height: clamp(36px, 8vw, 48px);
+
+  /* UI */
+  background: transparent;
   border: none;
   cursor: pointer;
-  padding: var(--space-2);
-  border-radius: var(--radius-2);
+  border-radius: 10px;
+
+  /* Better touch */
+  padding: 6px;
+
+  /* Layer */
   z-index: 200;
   position: relative;
-}
 
+  /* Smooth */
+  transition: all 0.3s ease;
+}
 .menuBar {
   display: block;
   width: 22px;
@@ -1334,6 +1323,12 @@
     text-align: center;
   }
   
+}
+@media (max-width: 768px) {
+  .testimonialsGrid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
 }
 
 @media (max-width: 480px) {
