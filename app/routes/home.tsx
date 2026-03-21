@@ -26,8 +26,8 @@ import {
   MessageCircle,
   Youtube, // Added for WhatsApp icon
 } from "lucide-react";
-import WhatsApp_Image_2026_0214_at_23_3010 from "/WhatsApp Image 2026-02-14 at 23.30.10.jpeg";
-import WhatsApp_Image_2026_0215_at_12_3833 from "/WhatsApp Image 2026-02-15 at 12.38.33.jpeg";
+import WhatsApp_Image_2026_0214_at_23_3010 from "/saha-logo.jpeg";
+import WhatsApp_Image_2026_0215_at_12_3833 from "/front-logo.jpeg";
 
 export function meta({}: Route.MetaArgs) {
   return [
