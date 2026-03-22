@@ -124,6 +124,7 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   //dark mode
   const [darkMode, setDarkMode] = useState(false);
+  const [propertyOpen, setPropertyOpen] = useState(false);
   const actionData = useActionData<typeof action>();
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
@@ -187,19 +188,42 @@ const toggleTheme = () => {
             <button className={styles.navLink} onClick={() => scrollToSection("services")}>
               Services
             </button>
-            <a href="/joka-wander-valley.pdf" target="_blank" rel="noopener noreferrer" className={styles.navLink}>
-              <FileText size={15} style={{ verticalAlign: "middle", marginRight: 4 }} />
-              Joka Wander Valley
-            </a>
-            <a href="/nest-valley.pdf" target="_blank" rel="noopener noreferrer" className={styles.navLink}>
-              <FileText size={15} style={{ verticalAlign: "middle", marginRight: 4 }} />
-              Nest Valley
-            </a>
+            <div 
+  className={styles.dropdown}
+  onMouseEnter={() => setPropertyOpen(true)}
+  onMouseLeave={() => setPropertyOpen(false)}
+>
+  <button className={styles.navLink}>
+    Property Details
+  </button>
+
+  {propertyOpen && (
+    <div className={styles.dropdownMenu}>
+      <a
+        href="/joka-wander-valley.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.dropdownItem}
+      >
+        Joka Wander Valley
+      </a>
+
+      <a
+        href="/nest-valley.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.dropdownItem}
+      >
+        Nest Valley
+      </a>
+    </div>
+  )}
+</div>
             <button className={styles.navLink} onClick={() => scrollToSection("contact")}>
               Contact
             </button>
             <button className={styles.ctaButton} onClick={() => scrollToSection("contact")}>
-              Invest Now
+              Book Now
             </button>
             
           </nav>
@@ -627,7 +651,7 @@ const toggleTheme = () => {
 <div className={styles.floatingButtons}>
   
   {/* Call Button */}
-  <a href="tel:919831958387" className={styles.callButton}>
+  <a href="tel:9831958387" className={styles.callButton}>
     <Phone size={24} />
   </a>
 
