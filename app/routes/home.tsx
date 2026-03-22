@@ -219,11 +219,9 @@ const toggleTheme = () => {
     </div>
   )}
 </div>
-            <button className={styles.navLink} onClick={() => scrollToSection("contact")}>
-              Contact
-            </button>
+            
             <button className={styles.ctaButton} onClick={() => scrollToSection("contact")}>
-              Book Now
+              Contact Us
             </button>
             
           </nav>
@@ -254,11 +252,13 @@ const toggleTheme = () => {
               Shah Group is your trusted partner in premium real estate development and investment. We transform visions
               into valuable assets, creating opportunities for sustainable growth and prosperity.
             </p>
+  
             <div className={styles.heroActions}>
-              <button className={styles.primaryButton} onClick={() => scrollToSection("services")}>
-                Explore Opportunities
+              <button className={styles.primaryButton} onClick={() => scrollToSection("contact")}>
+                BOOK Now
                 <ArrowRight size={20} />
               </button>
+              
             </div>
           </div>
           <div className={styles.heroVisual}>
